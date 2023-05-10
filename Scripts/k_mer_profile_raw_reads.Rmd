@@ -1,0 +1,77 @@
+---
+title: "k-mer profile plotting for raw reads"
+author: "https://koke.asrc.kanazawa-u.ac.jp/HOWTO/kmer-genomesize.html"
+date: "2023-05-10"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
+```
+
+```{r}
+my_path <- "C:\\Users\\Oxana\\Desktop"
+```
+
+
+```{r message=FALSE, warning=FALSE}
+setwd(my_path)
+Rub115_L001 <- read.csv("Rub115_ATTCAGAA-CCTATCCT_L001_23.histo", sep=" ", header = F)
+plot(Rub115_L001[3:200,],
+     type="l",
+     xlab = "The number of times a k-mer occurs (‘depth’)", 
+     ylab = "The count for the number of k-mers")
+title("k-mer profile for raw Rub115_L001")
+peak <- Rub115_L001[30:40,] # denote the peak segment
+peak_point <- peak$V1[which.max(peak$V2)]
+points(Rub115_L001[peak_point,]) # denote the peak position
+sum(as.numeric(Rub115_L001[11:5875,1]*Rub115_L001[11:5875,2])) # calculating the total number of k-mer in the distribution
+sum(as.numeric(Rub115_L001[11:5875,1]*Rub115_L001[11:5875,2]))/peak_point # calculating the genome size
+```
+
+```{r message=FALSE, warning=FALSE}
+setwd(my_path)
+Rub115_L002 <- read.csv("Rub115_ATTCAGAA-CCTATCCT_L002_23.histo", sep=" ", header = F)
+plot(Rub115_L002[3:200,],
+     type="l",
+     xlab = "The number of times a k-mer occurs (‘depth’)", 
+     ylab = "The count for the number of k-mers")
+title("k-mer profile for raw Rub115_L002")
+peak <- Rub115_L002[30:40,] # denote the peak segment
+peak_point <- peak$V1[which.max(peak$V2)]
+points(Rub115_L002[peak_point,]) # denote the peak position
+sum(as.numeric(Rub115_L002[12:5824,1]*Rub115_L002[12:5824,2])) # calculating the total number of k-mer in the distribution
+sum(as.numeric(Rub115_L001[12:5824,1]*Rub115_L001[12:5824,2]))/peak_point # calculating the genome size
+```
+```{r message=FALSE, warning=FALSE}
+setwd(my_path)
+Rub117_L001 <- read.csv("Rub117_GAATTCGT-CCTATCCT_L001_23.histo", sep=" ", header = F)
+plot(Rub117_L001[3:200,],
+     type="l",
+     xlab = "The number of times a k-mer occurs (‘depth’)", 
+     ylab = "The count for the number of k-mers")
+title("k-mer profile for raw Rub117_L001")
+peak <- Rub117_L001[25:35,] # denote the peak segment
+peak_point <- peak$V1[which.max(peak$V2)]
+points(Rub117_L001[peak_point,]) # denote the peak position
+sum(as.numeric(Rub117_L001[10:5332,1]*Rub117_L001[10:5332,2])) # calculating the total number of k-mer in the distribution
+sum(as.numeric(Rub117_L001[10:5332,1]*Rub117_L001[10:5332,2]))/peak_point # calculating the genome size
+```
+
+```{r message=FALSE, warning=FALSE}
+setwd(my_path)
+Rub117_L002 <- read.csv("Rub117_GAATTCGT-CCTATCCT_L002_23.histo", sep=" ", header = F)
+plot(Rub117_L002[3:200,],
+     type="l",
+     xlab = "The number of times a k-mer occurs (‘depth’)", 
+     ylab = "The count for the number of k-mers")
+title("k-mer profile for raw Rub117_L002")
+peak <- Rub117_L002[25:40,] # denote the peak segment
+peak_point <- peak$V1[which.max(peak$V2)]
+points(Rub117_L002[peak_point,]) # denote the peak position
+sum(as.numeric(Rub117_L002[10:5367,1]*Rub117_L002[10:5367,2])) # calculating the total number of k-mer in the distribution
+sum(as.numeric(Rub117_L002[10:5367,1]*Rub117_L002[10:5367,2]))/peak_point # calculating the genome size
+```
+
+
+
