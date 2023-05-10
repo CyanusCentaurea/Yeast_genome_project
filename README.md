@@ -80,7 +80,7 @@ The project combined two major tasks:
 1. Reference selection, alignment and variant calling;
 2. Genome assembly.
 
-![img_1.png](img_1.png)
+![img_1.png](Figures/img_1.png)
 
 ## Preparing the raw reads <div id='preparing_reads'/>
 
@@ -491,12 +491,29 @@ Then we made tables for histograms.
 Command example:  
 `$ jellyfish histo Rub115_ATTCAGAA-CCTATCCT_L001_23.jf > Rub115_ATTCAGAA-CCTATCCT_L001_23.histo`
 
-After that we run the R script (Scripts/k_mer_profile_raw_reads.Rmd) on the .histo files obtained as a result of executing the previous commands.
+After that we run the R script (can be found in Scripts/k_mer_profile_raw_reads.Rmd) on the .histo files obtained as a result of executing the previous commands (can be found in Data_for_scripts/Raw_reads_genome_size_plotting).
 
 The second approach involves using the Genomescope web tool on these .histo files.
 
 The third approach involves calculations by the formula:  
-![equation](https://latex.codecogs.com/svg.latex?%5Cbg%7Bwhite%7Dgenome%5C_size%20=%20%5Cfrac%7BT%7D%7B(M%20%5Ccdot%20L)/(L%20-%20K%20&plus;%201)%7D)
+![img_9.png](img_9.png)
+where:  
+*M* = k-mer peak;   
+*K* = K-mer size;   
+*L* = average read length;   
+*T* = total bases  
+
+M was obtained from the R script above, L and T were obtained as a result of FastQC analysis.  
 
 ### Genome size estimation: corrected reads <div id='genome_size_cor'/>
-SPAdes works in two-step mode: error correction and assembly. It contains corrected reads in the “corrected” folder. We repeated the k-mer profile plotting step and compared the results with the one for uncorrected reads. 
+SPAdes works in two-step mode: error correction and assembly. It contains corrected reads in the “corrected” folder. We repeated the calculations and compared the results with the ones for uncorrected reads. 
+
+R script can be found in Scripts/k_mer_profile_corrected_reads.Rmd and the .histo files can be found in Data_for_scripts/Corrected_reads_genome_size_plotting.
+
+Here we present a comparison of the results obtained.
+
+![img_10.png](img_10.png)
+
+![img_11.png](img_11.png)
+
+We see that, as a rule (but not in all cases), the calculations for corrected reads are slightly closer to the actual genome size. Also, for corrected reads, we give a [QUAST](https://cab.spbu.ru/software/quast/) v5.2.0 estimate of the genome size.
