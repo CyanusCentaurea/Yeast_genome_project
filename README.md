@@ -34,7 +34,9 @@ SPbSU
    * [Step 14: filter indels](#step_14)
    * [Step 15: annotate SNPs and predict effects](#step_15)
    * [Overlaps between VCF files](#overlaps)
-8. [Part 2: genome assembly](part_2)
+8. [Part 2: genome assembly](#part_2)
+   * [Genome size estimation: raw reads](#genome_size_raw)
+   * [Genome size estimation: corrected reads](#genome_size_cor)
 
 ## Introduction <div id='introduction'/>
 The increased interest in the study of amyloids is due to their
@@ -465,7 +467,7 @@ This SNP is more notable not for the gene in which it was located, but for the e
 Command example:   
 `$ SPAdes-3.15.4-Linux/bin/spades.py -1 Rub115_ATTCAGAA-CCTATCCT_L001_R1_001.fastq -2 Rub115_ATTCAGAA-CCTATCCT_L001_R2_001.fastq -o ./assembly/Rub115_ATTCAGAA-CCTATCCT_L001` 
 
-### Genome size estimation: raw reads
+### Genome size estimation: raw reads <div id='genome_size_raw'/>
 
 We used three approaches to estimate the genome size:  
 1. With [Jellyfish mer counter](https://genome.umd.edu/jellyfish.html) v. 2.3.0 and R;  
@@ -494,7 +496,7 @@ After that we run the R script (Scripts/k_mer_profile_raw_reads.Rmd) on the .his
 The second approach involves using the Genomescope web tool on these .histo files.
 
 The third approach involves calculations by the formula:  
-![equation](https://latex.codecogs.com/svg.latex?genome%5C_size%20=%20%5Cfrac%7BT%7D%7B(M%20%5Ccdot%20L)/(L%20-%20K%20&plus;%201)%7D)
+![equation](https://latex.codecogs.com/svg.latex?%5Cbg_white%20genome%5C_size%20=%20%5Cfrac%7BT%7D%7B(M%20%5Ccdot%20L)/(L%20-%20K%20&plus;%201)%7D)
 
-### Genome size estimation: corrected reads
+### Genome size estimation: corrected reads <div id='genome_size_cor'/>
 SPAdes works in two-step mode: error correction and assembly. It contains corrected reads in the “corrected” folder. We repeated the k-mer profile plotting step and compared the results with the one for uncorrected reads. 
