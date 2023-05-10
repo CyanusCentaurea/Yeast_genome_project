@@ -496,7 +496,7 @@ After that we run the R script (Scripts/k_mer_profile_raw_reads.Rmd) on the .his
 The second approach involves using the Genomescope web tool on these .histo files.
 
 The third approach involves calculations by the formula:  
-![equation](https://latex.codecogs.com/svg.image?%5Cbg%7Bwhite%7Dgenome%5C_size%20=%20%5Cfrac%7BT%7D%7B(M%20%5Ccdot%20L)/(L%20-%20K%20&plus;%201)%7D)
+![equation](https://latex.codecogs.com/svg.latex?%5Cbg%7Bwhite%7Dgenome%5C_size%20=%20%5Cfrac%7BT%7D%7B(M%20%5Ccdot%20L)/(L%20-%20K%20&plus;%201)%7D)
 
 ### Genome size estimation: corrected reads <div id='genome_size_cor'/>
 SPAdes works in two-step mode: error correction and assembly. It contains corrected reads in the “corrected” folder. We repeated the k-mer profile plotting step and compared the results with the one for uncorrected reads. 
