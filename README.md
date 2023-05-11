@@ -4,11 +4,11 @@ Sidorenko Oksana, Bioinformatics Institute
 
 **Supervisors:**   
 Lavrentii Danilov,    
-Department of Genetics and Biotechnology, SPbSU
+Department of Genetics and Biotechnology, SPbU
 
 Alexandr Rubel,    
 Laboratory of Amyloid Biology, Department of Genetics and Biotechnology,
-SPbSU
+SPbU
 
 # Table of contents
 1. [Introduction](#introduction)
@@ -37,6 +37,7 @@ SPbSU
 8. [Part 2: genome assembly](#part_2)
    * [Genome size estimation: raw reads](#genome_size_raw)
    * [Genome size estimation: corrected reads](#genome_size_cor)
+   * [Annotation](#annotation)
 
 ## Introduction <div id='introduction'/>
 The increased interest in the study of amyloids is due to their
@@ -85,19 +86,19 @@ The project combined two major tasks:
 ## Preparing the raw reads <div id='preparing_reads'/>
 
 The quality of raw paired reads was assessed in [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/). About 2% of reads in each sample were trimmed by [fastp](https://github.com/OpenGene/fastp?ysclid=lhgdfykpzu319786469) (v. 0.20.1, standard parameters) due to low quality and too many N.
-![img_2.png](img_2.png)
+![img_2.png](Figures/img_2.png)
 
-![img_3.png](img_3.png)
+![img_3.png](Figures/img_3.png)
 
-![img_4.png](img_4.png)
+![img_4.png](Figures/img_4.png)
 
-![img_5.png](img_5.png)
+![img_5.png](Figures/img_5.png)
 
 ## Part 1: reference selection, alignment and variant calling <div id='part_1'/>
 
 We used [variant calling pipeline](https://gencore.bio.nyu.edu/variant-calling-pipeline-gatk4/) with [GATK4](https://gatk.broadinstitute.org/hc/en-us) published by Mohammed Khalfan on 2020-03-25.    
 Here we give an example of commands for one sample. All commands were executed similarly for all four samples.
-![img_6.png](img_6.png)
+![img_6.png](Figures/img_6.png)
 
 ### Step 1: alignment – map to reference <div id='step_1'/>
 
@@ -154,7 +155,7 @@ Commands example:
 
 `$ samtools depth -a Rub115_ATTCAGAA-CCTATCCT_L001_sorted_dedup_reads.bam > Rub115_ATTCAGAA-CCTATCCT_L001_depth_out.txt`
 
-![img_7.png](img_7.png)
+![img_7.png](Figures/img_7.png)
 
 ### Step 4: variant calling <div id='step_4'/>
 
@@ -406,7 +407,7 @@ The results matched for these two tools: there were 12315, 12352, 12239 and 1227
 
 We went through all the above steps with the reference *S. cerevisiae* strain S288C, but found about 25000 SNPs for each sample, so we changed the reference to *S. cerevisiae* strain 74-D694.
 
-![img_8.png](img_8.png)
+![img_8.png](Figures/img_8.png)
 
 ### Overlaps between VCF files <div id='overlaps'/>
 
@@ -496,7 +497,7 @@ After that we run the R script (can be found in Scripts/k_mer_profile_raw_reads.
 The second approach involves using the Genomescope web tool on these .histo files.
 
 The third approach involves calculations by the formula:  
-![img_9.png](img_9.png)
+![img_9.png](Figures/img_9.png)  
 where:  
 *M* = k-mer peak;   
 *K* = K-mer size;   
@@ -512,8 +513,28 @@ R script can be found in Scripts/k_mer_profile_corrected_reads.Rmd and the .hist
 
 Here we present a comparison of the results obtained.
 
-![img_10.png](img_10.png)
+![img_10.png](Figures/img_10.png)
 
-![img_11.png](img_11.png)
+![img_11.png](Figures/img_11.png)
 
-We see that, as a rule (but not in all cases), the calculations for corrected reads are slightly closer to the actual genome size. Also, for corrected reads, we give a [QUAST](https://cab.spbu.ru/software/quast/) v5.2.0 estimate of the genome size.
+We see that, as a rule (but not in all cases), the calculations for corrected reads are slightly closer to the actual genome size. Also, for corrected reads, we give a [QUAST](https://cab.spbu.ru/software/quast/) v5.2.0 estimate of the genome size.  
+
+### Annotation <div id='annotation'/>
+
+Repeat masking was performed with [RepeatMasker](https://www.repeatmasker.org/) v. 4.1.5.  
+Command example:   
+
+`$ RepeatMasker -species 'Saccharomyces cerevisiae' Rub115_ATTCAGAA-CCTATCCT_L001_cor_contigs.fasta`
+
+Annotation was performed with [Augustus web interface](http://bioinf.uni-greifswald.de/webaugustus) (default parameters).
+
+We obtained 5374, 5377, 5371, 5369 protein sequences for Rub_115_L001, Rub_115_L002, Rub_117_L001, Rub_117_L002 masked contigs predicted, respectively.
+
+These sequences were mapped to the known S288C genes with [ProteinOrtho](https://www.bioinf.uni-leipzig.de/Software/proteinortho/) and [BUSCO](https://busco.ezlab.org/) v. 6.1.7. 
+
+[Protein fasta](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/146/045/GCF_000146045.2_R64/GCF_000146045.2_R64_protein.faa.gz) was downloaded for mapping with ProteinOrtho clustering. Contains 6017 protein sequences.   
+ProteinOrtho command example:   
+`$ perl ./usr/local/bin/proteinortho6.pl Rub115_L001_cor_contigs_masked_predictions.aa GCA_000146045.2_R64_protein.faa`
+
+We have found 5138 (about 85.4% of reference genome), 5143 (about 85.5% of reference genome), 5141 (about 85.4% of reference genome), 5145 (about 85.5% of reference genome) genes for Rub_115_L001, Rub_115_L002, Rub_117_L001, Rub_117_L002 masked contigs predicted, respectively.
+
