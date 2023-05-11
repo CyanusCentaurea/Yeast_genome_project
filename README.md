@@ -38,6 +38,8 @@ SPbU
    * [Genome size estimation: raw reads](#genome_size_raw)
    * [Genome size estimation: corrected reads](#genome_size_cor)
    * [Annotation](#annotation)
+   * [D-genies plotting](#d_genies)
+   * [Characteristics of genes in the inverted region](#inversion_genes)
 
 ## Introduction <div id='introduction'/>
 The increased interest in the study of amyloids is due to their
@@ -530,7 +532,7 @@ Annotation was performed with [Augustus web interface](http://bioinf.uni-greifsw
 
 We obtained 5374, 5377, 5371, 5369 protein sequences for Rub_115_L001, Rub_115_L002, Rub_117_L001, Rub_117_L002 masked contigs predicted, respectively.
 
-These sequences were mapped to the known S288C genes with [ProteinOrtho](https://www.bioinf.uni-leipzig.de/Software/proteinortho/) and [BUSCO](https://busco.ezlab.org/) v. 6.1.7. 
+These sequences were mapped to the known S288C genes with [ProteinOrtho](https://www.bioinf.uni-leipzig.de/Software/proteinortho/) v. 6.1.7 and [BUSCO](https://busco.ezlab.org/) v. 5.4.4. 
 
 [Protein fasta](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/146/045/GCF_000146045.2_R64/GCF_000146045.2_R64_protein.faa.gz) was downloaded for mapping with ProteinOrtho clustering. Contains 6017 protein sequences.   
 ProteinOrtho command example:   
@@ -538,3 +540,145 @@ ProteinOrtho command example:
 
 We have found 5138 (about 85.4% of reference genome), 5143 (about 85.5% of reference genome), 5141 (about 85.4% of reference genome), 5145 (about 85.5% of reference genome) genes for Rub_115_L001, Rub_115_L002, Rub_117_L001, Rub_117_L002 masked contigs predicted, respectively.
 
+BUSCO command example:   
+`$ docker run -u 1000 -v busco:v5.4.4_cv1 busco -i ./busco_input -l saccharomycetes_odb10 -m proteins -o busco_output`  
+parameters:  
+-u for user id (obtained with `$ id -u`)  
+-l for [lineages](https://busco.ezlab.org/list_of_lineages.html)  
+
+![img_12.png](Figures/img_12.png)
+
+where BUSCOs - Benchmarking Universal Single-Copy Orthologs.
+
+### D-Genies plotting <div id='d_genies'/>
+[D-Genies](https://dgenies.toulouse.inra.fr/) - an online tool designed to compare two genomes - was used for comparing reference strain 74-D694 and assemblies with dot plots.   
+
+![img_13.png](Figures/img_13.png)
+
+A long inversion was detected (chromosome CM026512.1 (IX), 148411 - 304998) in sample Rub_117_L001. A coverage plot was built to make sure there was no duplication or deletion.  
+Coverage file was obtained with command:  
+`samtools depth -a Rub117_GAATTCGT-CCTATCCT_L001.bam  > Rub117_GAATTCGT-CCTATCCT_L001.coverage`  
+
+This file can be found in 117_001_coverage/Rub117_GAATTCGT-CCTATCCT_L001_recal_reads.coverage. The plot was obtained by processing this file with the R script which can be found in Scripts/117_1_coverage_plot.Rmd
+
+![img_14.png](Figures/img_14.png) 
+
+There are no signs of changes in the copyness of chromosomes or their sections on the plot.
+
+### Characteristics of genes in the inverted region <div id='inversion_genes'/>
+
+Characteristics of genes in the inverted region <div id='inversion_genes'/>
+
+| Locus tag   | Gene      | Coordinates (Chromosome: IX; CM026512.1) | Gene description                                                                                        |
+|-------------|-----------|------------------------------------------|---------------------------------------------------------------------------------------------------------|
+| *YIL107C*   | *PFK26*   | 148453-150936                            | 6-phosphofructo-2-kinase                                                                                |
+| *YIL106W*   | *MOB1*    | 151590-152616                            | Mob1p                                                                                                   |
+| *YIL105C*   | *SLM1*    | 152753-154819                            | phosphatidylinositol 4,5-bisphosphate-binding protein                                                   |
+| *YIL104C*   | *SHQ1*    | 155162-156685                            | Hsp90 cochaperone SHQ1                                                                                  |
+| *YIL103W*   | *DPH1*    | 156930-158207                            | 2-(3-amino-3-carboxypropyl)histidine synthase                                                           |
+| *YIL101C*   | *XBP1*    | 160519-162465                            | Xbp1p                                                                                                   |
+| *YIL099W*   | *SGA1*    | 163215-164864                            | glucan 1,4-alpha-glucosidase                                                                            |
+| *YIL098C*   | *FMC1*    | 164981-165448                            | Fmc1p                                                                                                   |   
+| *YIL097W*   | *FYV10*   | 165636-167186                            | glucose-induced degradation complex subunit FYV10                                                       |
+| *YIL096C*   | *BMT5*    | 167326-168336                            | 25S rRNA (uracil2634-N3)-methyltransferase                                                              |
+| *YIL095W*   | *PRK1*    | 169144-17157                             | serine/threonine protein kinase PRK1                                                                    |
+| *YIL094C*   | *LYS12*   | 171724-172839                            | homoisocitrate dehydrogenase                                                                            |  
+| *YIL093C*   | *RSM25*   | 173207-174001                            | mitochondrial 37S ribosomal protein RSM25                                                               |
+| *YIL091C*   | *UTP25*   | 176247-178412                            | rRNA-binding ribosome biosynthesis protein UTP25                                                        |
+| *YIL090W*   | *ICE2*    | 178810-180285                            | Ice2p                                                                                                   |
+| *YIL088C*   | *AVT7*    | 182773-184245                            | Avt7p                                                                                                   |
+| *YIL087C*   | *AIM19*   | 184489-184962                            | Aim19p                                                                                                  |
+| *YIL085C*   | *KTR7*    | 185333-186886                            | putative mannosyltransferase                                                                            |
+| *YIL084C*   | *SDS3*    | 187119-188102                            | Sds3p                                                                                                   |
+| *YIL083C*   | *CAB2*    | 188398-189495                            | phosphopantothenate--cysteine ligase CAB2                                                               |
+| *YIL079C*   | *AIR1*    | 190330-191412                            | TRAMP complex RNA-binding subunit                                                                       |
+| *YIL078W*   | *THS1*    | 191905-194109                            | threonine--tRNA ligase THS1                                                                             |
+| *YIL077C*   | *RCI37*   | 194396-195358                            | Rci37p                                                                                                  |
+| *YIL076W*   | *SEC28*   | 196063-196953                            | coatomer subunit epsilon                                                                                |
+| *YIL075C*   | *RPN2*    | 197267-200104                            | proteasome regulatory particle base subunit RPN2                                                        |
+| *YIL074C*   | *SER33*   | 1200485-201894                           | phosphoglycerate dehydrogenase SER33                                                                    |
+| *YIL073C*   | *SPO22*   | 202341-205358                            | Spo22p                                                                                                  |
+| *YIL072W*   | *HOP1*    | 206006-207823                            | Hop1p                                                                                                   |
+| *YIL071C*   | *PCI8*    | 208064-209098                            | Pci8p                                                                                                   |
+| *YIL070C*   | *MAM33*   | 209676-210476                            | Mam33p                                                                                                  |
+| *YER074W*   | *RPS24A*  | 210955-211772                            | ribosomal 40S subunit protein S24A                                                                      |
+| *YIL068C*   | *SEC6*    | 212460-214877                            | SNARE-binding exocyst                                                                                   |
+| *YIL067C*   | -         | 215127-217163                            | -                                                                                                       |
+| *YIL066C*   | *RNR3*    | 217502-220159                            | ribonucleotide-diphosphate reductase subunit RNR3                                                       |
+| *YIL065C*   | *FIS1*    | 220706-221173                            | Fis1p                                                                                                   |
+| *YIL064W*   | *EFM4*    | 221365-222114                            | Efm4p                                                                                                   |
+| *YIL063C*   | *YRB2*    | 222159-223142                            | Yrb2p                                                                                                   |
+| *YIL062C*   | *ARC15*   | 223396-223860                            | Arc15p                                                                                                  |
+| *YIL061C*   | *SNP1*    | 224055-224957                            | U1 snRNP complex subunit SNP1                                                                           |
+| *YIL057C*   | *RGI2*    | 226965-227459                            | Rgi2p                                                                                                   |
+| *YIL056W*   | *VHR1*    | 229057-230979                            | Vhr1p                                                                                                   |
+| *YIL055C*   | -         | 231108-232991                            | -                                                                                                       |
+| *YIL053W*   | *GPP1*    | 234181-234933                            | glycerol-1-phosphatase RHR2                                                                             |
+| *YIL052C*   | *RPL34B*  | 235293-236131                            | ribosomal 60S subunit protein L34B                                                                      |
+| *YIL051C*   | *MMF1*    | 236912-237349                            | isoleucine biosynthesis protein MMF1                                                                    |
+| *YIL050W*   | *PCL7*    | 237982-238839                            | Pcl7p                                                                                                   |
+| *YIL048W*   | *NEO1*    | 240502-243957                            | putative aminophospholipid-translocating P4-type ATPase NEO1                                            |
+| *YIL047C*   | *YIL047C* | 244180-246888                            | Syg1p                                                                                                   |
+| *YIL046W*   | *YIL046W* | 247717-249639                            | ubiquitin-binding SDF ubiquitin ligase complex subunit MET30                                            |
+| *YIL045W*   | *PIG2*    | 250227-251843                            | putative protein phosphatase regulator PIG2                                                             |
+| *YIL044C*   | *AGE2*    | 252015-252911                            | GTPase-activating protein AGE2                                                                          |
+| *YIL043C*   | *CBR1*    | 253134-253988                            | cytochrome-b5 reductase                                                                                 |
+| *YIL042C*   | *PKP1*    | 254170-255354                            | protein kinase PKP1                                                                                     |
+| *YIL041W*   | *GVP36*   | 255587-256567                            | Gvp36p                                                                                                  |
+| *YIL039W*   | *TED1*    | 257490-258911                            | Ted1p                                                                                                   |
+| *YIL038C*   | *NOT3*    | 259207-264064                            | CCR4-NOT core subunit NOT3                                                                              |
+| *YIL036W*   | *CST6*    | 264730-266496                            | Cst6p                                                                                                   |
+| *YIL035C*   | *CKA1*    | 266857-267975                            | casein kinase 2 catalytic subunit CKA1                                                                  |
+| *YIL034C*   | *CAP2*    | 268294-269157                            | F-actin-capping protein subunit beta                                                                    |
+| *YIL033C*   | *BCY1*    | 269486-270736                            | cAMP-dependent protein kinase regulatory subunit BCY1                                                   |
+| *YIL031W*   | *ULP2*    | 271700-274804                            | SUMO protease ULP2                                                                                      |
+| *YIL030C*   | *SSM4*    | 275117-279076                            | E3 ubiquitin-protein ligase SSM4                                                                        |
+| *YIL027C*   | *EMC5*    | 284366-284791                            | Emc5p                                                                                                   |
+| *YIL026C*   | *IRR1*    | 285164-288616                            | Irr1p                                                                                                   |
+| *YIL024C*   | -         | 289291-289860                            | uncharacterized protein                                                                                 |
+| *YIL023C*   | *YKE4*    | 290075-291115                            | Zn(2+) transporter YKE4                                                                                 |
+| *YIL022W*   | *TIM44*   | 291857-293152                            | protein translocase subunit TIM44                                                                       |
+| *YIL021W*   | *RPB3*    | 293597-294553                            | DNA-directed RNA polymerase                                                                             |
+| *YIL020C*   | *HIS6*    | 294726-295511                            | 1-(5-phosphoribosyl)-5- ((5-phosphoribosylamino)methylideneamino)imidazole-4-carboxamide isomerase HIS6 |
+| *YIL019W*   | *FAF1*    | 295817-296824                            | Faf1p                                                                                                   |
+| *YFR031C-A* | *RPL2A*   | 297265-298624                            | ribosomal 60S subunit protein L2A                                                                       |
+| *YIL017C*   | *VID28*   | 298892-301657                            | glucose-induced degradation complex subunit VID28                                                       |
+| *YIL016W*   | *SNL1*    | 302161-302625                            | Snl1p                                                                                                   |
+| *YIL015W*   | *BAR1*    | 303034-304797                            | aspartyl protease BAR1                                                                                  |
+
+Of these genes, the following ones could be distinguished:   
+*DPH1*:  
+**NCBI**:  
+Predicted to enable transferase activity. Involved in peptidyl-diphthamide biosynthetic process from peptidyl-histidine. Located in cytoplasm. Orthologous to human DPH1 (diphthamide biosynthesis 1).    
+**SGD**:   
+Protein required for synthesis of diphthamide; required along with Dph2p, Kti11p, Jjj3p, and Dph5p; diphthamide is a modified histidine residue of translation elongation factor 2 (Eft1p or Eft2p); forms a complex with Dph2p that catalyzes the first step of diphthamide biosynthesis.
+  
+*XBP1*:   
+**NCBI**:   
+Enables DNA-binding transcription factor activity, RNA polymerase II-specific. Involved in cellular response to oxidative stress; negative regulation of transcription by RNA polymerase II; and positive regulation of histone deacetylation. Located in nucleus.
+**SGD**:   
+Transcriptional repressor; binds promoter sequences of cyclin genes, CYS3, and SMF2; not expressed during log phase of growth, but induced by stress or starvation during mitosis, and late in meiosis; represses 15% of all yeast genes as cells transition to quiescence; important for maintaining G1 arrest and for longevity of quiescent cells; member of Swi4p/Mbp1p family; phosphorylated by Cdc28p; relative distribution to nucleus increases upon DNA replication stress.
+
+*RPS24A*:   
+**NCBI**:  
+Predicted to be a structural constituent of ribosome. Involved in maturation of SSU-rRNA from tricistronic rRNA transcript (SSU-rRNA, 5.8S rRNA, LSU-rRNA). Located in mitochondrion. Human ortholog(s) of this gene implicated in Diamond-blackfan anemia 3. Orthologous to human RPS24 (ribosomal protein S24).   
+**SGD**:  
+Protein component of the small (40S) ribosomal subunit; homologous to mammalian ribosomal protein S24, no bacterial homolog; RPS24A has a paralog, RPS24B, that arose from the whole genome duplication.
+
+*YKE4*:    
+**NCBI**:   
+Enables zinc ion transmembrane transporter activity. Involved in zinc ion transport. Located in endoplasmic reticulum. Human ortholog(s) of this gene implicated in Ehlers-Danlos syndrome and Ehlers-Danlos syndrome spondylodysplastic type 3. Orthologous to several human genes including SLC39A7 (solute carrier family 39 member 7).  
+**SGD**:   
+Zinc transporter; localizes to the ER; null mutant is sensitive to calcofluor white, leads to zinc accumulation in cytosol; ortholog of the mouse KE4 and member of the ZIP (ZRT, IRT-like Protein) family.
+
+*RPL2A*:  
+**NCBI**:   
+Enables ATP binding activity; DNA binding activity; and chromatin binding activity. Contributes to ATP hydrolysis activity. Involved in chromosome organization and negative regulation of meiotic DNA double-strand break formation. Located in mitochondrion. Part of condensin complex. Orthologous to human SMC2 (structural maintenance of chromosomes 2).   
+**SGD**:   
+Ribosomal 60S subunit protein L2A; homologous to mammalian ribosomal protein L2 and bacterial L2; RPL2A has a paralog, RPL2B, that arose from the whole genome duplication.
+
+*SNL1*:   
+**NCBI**:    
+Enables ribosome binding activity. Involved in nuclear pore organization and protein folding. Located in endoplasmic reticulum membrane and nuclear envelope.  
+**SGD**:   
+Ribosome-associated protein; proposed to act in protein synthesis, nuclear pore complex biogenesis and maintenance as well as protein folding and prion maintenance; has similarity to the mammalian BAG-1 protein.  
