@@ -469,9 +469,9 @@ Of the detected SNPs, the following ones could be distinguished:
 
 for the strain 115:
 * *YEL030W (ECM10)*:    
-**[*Saccharomyces* genome database (SGD)](https://www.yeastgenome.org/)**:   
+**[*Saccharomyces* genome database (SGD)](https://www.yeastgenome.org/)** [[1]](#1) [[2]](#2):   
 Heat shock protein of the Hsp70 family; localized in mitochondrial nucleoids, plays a role in protein translocation, interacts with Mge1p in an ATP-dependent manner; overexpression induces extensive mitochondrial DNA aggregations; ECM10 has a paralog, SSC1, that arose from the whole genome duplication.  
-**[The National Center for Biotechnology Information (NCBI)](https://www.ncbi.nlm.nih.gov/)**:   
+**[The National Center for Biotechnology Information (NCBI)](https://www.ncbi.nlm.nih.gov/)** [[3]](#3) [[4]](#4):   
 Predicted to enable several functions, including ATP binding activity; ATP hydrolysis activity; and misfolded protein binding activity. Involved in protein targeting to mitochondrion. Located in mitochondrial nucleoid. Human ortholog(s) of this gene implicated in Parkinson's disease and autosomal dominant sideroblastic anemia 4. Orthologous to human HSPA9 (heat shock protein family A (Hsp70) member 9).
 
 * *YMR173W-A*:    
@@ -675,11 +675,11 @@ Of these genes, the following ones could be distinguished:
 
 *YIL101C (XBP1)*:   
 **NCBI**:   
-Enables DNA-binding transcription factor activity, RNA polymerase II-specific. Involved in cellular response to oxidative stress; negative regulation of transcription by RNA polymerase II; and positive regulation of histone deacetylation. Located in nucleus.
+Enables DNA-binding transcription factor activity, RNA polymerase II-specific. Involved in cellular response to oxidative stress; negative regulation of transcription by RNA polymerase II; and positive regulation of histone deacetylation. Located in nucleus.   
 **SGD**:   
 Transcriptional repressor; binds promoter sequences of cyclin genes, CYS3, and SMF2; not expressed during log phase of growth, but induced by stress or starvation during mitosis, and late in meiosis; represses 15% of all yeast genes as cells transition to quiescence; important for maintaining G1 arrest and for longevity of quiescent cells; member of Swi4p/Mbp1p family; phosphorylated by Cdc28p; relative distribution to nucleus increases upon DNA replication stress.
 
-It was shown that prion [SWI] affects expression of FLO genes, variants of which we have identified in the strain 117 [[1]](#1).
+It was shown that prion [SWI] affects expression of FLO genes, variants of which we have identified in the strain 117 [[5]](#5).
 
 *RPS24A*:   
 **NCBI**:  
@@ -692,7 +692,7 @@ Protein component of the small (40S) ribosomal subunit; homologous to mammalian 
 Enables zinc ion transmembrane transporter activity. Involved in zinc ion transport. Located in endoplasmic reticulum. Human ortholog(s) of this gene implicated in Ehlers-Danlos syndrome and Ehlers-Danlos syndrome spondylodysplastic type 3. Orthologous to several human genes including SLC39A7 (solute carrier family 39 member 7).  
 **SGD**:   
 Zinc transporter; localizes to the ER; null mutant is sensitive to calcofluor white, leads to zinc accumulation in cytosol; ortholog of the mouse KE4 and member of the ZIP (ZRT, IRT-like Protein) family.
-It was shown that that members of the prion gene family represent an ancient branch of a larger family of ZIP metal ion transporters [[2]](#2)[[3]](#3).
+It was shown that that members of the prion gene family represent an ancient branch of a larger family of ZIP metal ion transporters [[6]](#6)[[7]](#7).
 
 *YFR031C-A (RPL2A)*:  
 **NCBI**:   
@@ -712,11 +712,15 @@ Also, in connection with the revealed effect of the prion-like factor [MSC+] (pr
 
 Thus, in our work, we have identified a number of candidate genes for further testing. We can offer to study protein - protein interaction by the co-immunoprecipitation
 method, DNA-protein interaction by the Chip-seq method or gene knockdown to verify our findings and for
-further experiments. It is also necessary to study the identified SNPs, apply statistical approaches and obtain gene deletions for confirmation to confirm or refute the involvement of these findings in the manifestation if [MCS + ].
+further experiments. It is also necessary to study the identified SNPs, apply statistical approaches and obtain gene deletions to confirm or refute the involvement of these findings in the manifestation if [MCS + ].
 
-If one of these candidates is highlighted as a result of additional research, it may make sense to analyze the differential expression and analyze its structure for enrichment with certain amino acids and isolate a hypothetical prion domain, as well as check possible prion-prion interactions, since it is well-documented that a single yeast cell can harbor more than one prion element and that when two prions co-exist, they influence not only each other's de novo appearance but also propagation [[1]](#1).
+If one of these candidates is highlighted as a result of additional research, it may make sense to analyze the differential expression and its structure for enrichment with certain amino acids and isolate a hypothetical prion domain, as well as check possible prion-prion interactions, since it is well-documented that a single yeast cell can harbor more than one prion element and that when two prions co-exist, they influence not only each other's de novo appearance but also propagation [[5]](#5).
 
 ## Literature <div id='literature'/>
-1. Goncharoff, D. K., Du, Z., &#38; Li, L. (2018). A brief overview of the Swi1 prion—[SWI+]. <i>FEMS Yeast Research</i>, <i>18</i>(6), 61. https://doi.org/10.1093/FEMSYR/FOY061 <div id='1'/>  
-2. Ehsani, S., Mehrabian, M., Pocanschi, C. L., &#38; Schmitt-Ulms, G. (2012). The ZIP-prion connection. <i>Prion</i>, <i>6</i>(4), 317. https://doi.org/10.4161/PRI.20196 <div id='2'/>  
-3. Schmitt-Ulms, G., Ehsani, S., Watts, J. C., Westaway, D., &#38; Wille, H. (2009). Evolutionary descent of prion genes from the ZIP family of metal ion transporters. <i>PloS One</i>, <i>4</i>(9). https://doi.org/10.1371/JOURNAL.PONE.0007208 <div id='3'/> 
+1. Cherry, J. M., Hong, E. L., Amundsen, C., Balakrishnan, R., Binkley, G., Chan, E. T., Christie, K. R., Costanzo, M. C., Dwight, S. S., Engel, S. R., Fisk, D. G., Hirschman, J. E., Hitz, B. C., Karra, K., Krieger, C. J., Miyasato, S. R., Nash, R. S., Park, J., Skrzypek, M. S., … Wong, E. D. (2012). Saccharomyces Genome Database: the genomics resource of budding yeast. <i>Nucleic Acids Research</i>, <i>40</i>(Database issue). https://doi.org/10.1093/NAR/GKR1029 <div id='1'/> 
+2. Cherry, J. M., Ball, C., Weng, S., Juvik, G., Schmidt, R., Adler, C., Dunn, B., Dwight, S., Riles, L., Mortimer, R. K., &#38; Botstein, D. (1997). Genetic and physical maps of Saccharomyces cerevisiae. <i>Nature</i>, <i>387</i>(6632 Suppl), 67. https://doi.org/10.1038/387s067 <div id='2'/> 
+3. Sayers, E. W., Bolton, E. E., Brister, J. R., Canese, K., Chan, J., Comeau, D. C., Connor, R., Funk, K., Kelly, C., Kim, S., Madej, T., Marchler-Bauer, A., Lanczycki, C., Lathrop, S., Lu, Z., Thibaud-Nissen, F., Murphy, T., Phan, L., Skripchenko, Y., … Sherry, S. T. (2022). Database resources of the national center for biotechnology information. <i>Nucleic Acids Research</i>, <i>50</i>(D1), D20–D26. https://doi.org/10.1093/NAR/GKAB1112 <div id='3'/> 
+4. Gene [Internet]. Bethesda (MD): National Library of Medicine (US), National Center for Biotechnology Information; 2004 – [cited 2023 12 05]. Available from: https://www.ncbi.nlm.nih.gov/gene/
+5. Goncharoff, D. K., Du, Z., &#38; Li, L. (2018). A brief overview of the Swi1 prion—[SWI+]. <i>FEMS Yeast Research</i>, <i>18</i>(6), 61. https://doi.org/10.1093/FEMSYR/FOY061 <div id='5'/>  
+6. Ehsani, S., Mehrabian, M., Pocanschi, C. L., &#38; Schmitt-Ulms, G. (2012). The ZIP-prion connection. <i>Prion</i>, <i>6</i>(4), 317. https://doi.org/10.4161/PRI.20196 <div id='6'/>  
+7. Schmitt-Ulms, G., Ehsani, S., Watts, J. C., Westaway, D., &#38; Wille, H. (2009). Evolutionary descent of prion genes from the ZIP family of metal ion transporters. <i>PloS One</i>, <i>4</i>(9). https://doi.org/10.1371/JOURNAL.PONE.0007208 <div id='7'/> 
