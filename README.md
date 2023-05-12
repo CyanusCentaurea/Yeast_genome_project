@@ -41,7 +41,8 @@ SPbU
    * [Annotation](#annotation)
    * [D-genies plotting](#d_genies)
    * [Characteristics of genes in the inverted region](#inversion_genes)
-10. [Literature](#literature)
+10. [Conclusion and further plans](#conclusion)
+11. [Literature](#literature)
 
 ## Introduction <div id='introduction'/>
 The increased interest in the study of amyloids is due to their
@@ -63,7 +64,7 @@ manifestation in cells is associated with the presence in cells of unknown genet
 changes. That is, in strains that do not carry genetic changes, the factor
 [MCS + ] is also contained, but has no manifestation. Thus, the identification
 differences in the genomes of strains that differ in the manifestation of the factor [MCS + ],
-will shed light on the nature of genetic factors influencing the manifestation
+will shed light on the nature of genetic factors influencing the manifestation of
 [MCS + ], and may also contribute to the discovery of the nature of the [MCS + ] factor itself.   
 
 ## Aim: <div id='aim'/>
@@ -678,6 +679,8 @@ Enables DNA-binding transcription factor activity, RNA polymerase II-specific. I
 **SGD**:   
 Transcriptional repressor; binds promoter sequences of cyclin genes, CYS3, and SMF2; not expressed during log phase of growth, but induced by stress or starvation during mitosis, and late in meiosis; represses 15% of all yeast genes as cells transition to quiescence; important for maintaining G1 arrest and for longevity of quiescent cells; member of Swi4p/Mbp1p family; phosphorylated by Cdc28p; relative distribution to nucleus increases upon DNA replication stress.
 
+It was shown that prion [SWI] affects expression of FLO genes, variants of which we have identified in the strain 117 [[1]](#1).
+
 *RPS24A*:   
 **NCBI**:  
 Predicted to be a structural constituent of ribosome. Involved in maturation of SSU-rRNA from tricistronic rRNA transcript (SSU-rRNA, 5.8S rRNA, LSU-rRNA). Located in mitochondrion. Human ortholog(s) of this gene implicated in Diamond-blackfan anemia 3. Orthologous to human RPS24 (ribosomal protein S24).   
@@ -689,7 +692,7 @@ Protein component of the small (40S) ribosomal subunit; homologous to mammalian 
 Enables zinc ion transmembrane transporter activity. Involved in zinc ion transport. Located in endoplasmic reticulum. Human ortholog(s) of this gene implicated in Ehlers-Danlos syndrome and Ehlers-Danlos syndrome spondylodysplastic type 3. Orthologous to several human genes including SLC39A7 (solute carrier family 39 member 7).  
 **SGD**:   
 Zinc transporter; localizes to the ER; null mutant is sensitive to calcofluor white, leads to zinc accumulation in cytosol; ortholog of the mouse KE4 and member of the ZIP (ZRT, IRT-like Protein) family.
-It was shown that that members of the prion gene family represent an ancient branch of a larger family of ZIP metal ion transporters [[1]](#1)[[2]](#2).
+It was shown that that members of the prion gene family represent an ancient branch of a larger family of ZIP metal ion transporters [[2]](#2)[[3]](#3).
 
 *YFR031C-A (RPL2A)*:  
 **NCBI**:   
@@ -705,6 +708,15 @@ Ribosome-associated protein; proposed to act in protein synthesis, nuclear pore 
 
 Also, in connection with the revealed effect of the prion-like factor [MSC+] (presence of this factor in cells leads to a decrease in the accuracy of translation termination and reading premature stop codons as significant), we propose for additional studies all the genes associated with translation (*YER074W, YFR031C-A, YIL043C, YIL052C, YIL103W, YIL038C, YIL051C, YIL093C, YIL078W*).
 
+### Conclusion and further plans <div id='conclusion'/>
+
+Thus, in our work, we have identified a number of candidate genes for further testing. We can offer to study protein - protein interaction by the co-immunoprecipitation
+method, DNA-protein interaction by the Chip-seq method or gene knockdown to verify our findings and for
+further experiments. It is also necessary to study the identified SNPs, apply statistical approaches and obtain gene deletions for confirmation to confirm or refute the involvement of these findings in the manifestation if [MCS + ].
+
+If one of these candidates is highlighted as a result of additional research, it may make sense to analyze the differential expression and analyze its structure for enrichment with certain amino acids and isolate a hypothetical prion domain, as well as check possible prion-prion interactions, since it is well-documented that a single yeast cell can harbor more than one prion element and that when two prions co-exist, they influence not only each other's de novo appearance but also propagation [[1]](#1).
+
 ## Literature <div id='literature'/>
-1. Ehsani, S., Mehrabian, M., Pocanschi, C. L., &#38; Schmitt-Ulms, G. (2012). The ZIP-prion connection. <i>Prion</i>, <i>6</i>(4), 317. https://doi.org/10.4161/PRI.20196 <div id='1'/>  
-2. Schmitt-Ulms, G., Ehsani, S., Watts, J. C., Westaway, D., &#38; Wille, H. (2009). Evolutionary descent of prion genes from the ZIP family of metal ion transporters. <i>PloS One</i>, <i>4</i>(9). https://doi.org/10.1371/JOURNAL.PONE.0007208 <div id='2'/> 
+1. Goncharoff, D. K., Du, Z., &#38; Li, L. (2018). A brief overview of the Swi1 prion—[SWI+]. <i>FEMS Yeast Research</i>, <i>18</i>(6), 61. https://doi.org/10.1093/FEMSYR/FOY061 <div id='1'/>  
+2. Ehsani, S., Mehrabian, M., Pocanschi, C. L., &#38; Schmitt-Ulms, G. (2012). The ZIP-prion connection. <i>Prion</i>, <i>6</i>(4), 317. https://doi.org/10.4161/PRI.20196 <div id='2'/>  
+3. Schmitt-Ulms, G., Ehsani, S., Watts, J. C., Westaway, D., &#38; Wille, H. (2009). Evolutionary descent of prion genes from the ZIP family of metal ion transporters. <i>PloS One</i>, <i>4</i>(9). https://doi.org/10.1371/JOURNAL.PONE.0007208 <div id='3'/> 
