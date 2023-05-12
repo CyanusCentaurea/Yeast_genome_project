@@ -16,8 +16,9 @@ SPbU
 3. [Tasks](#tasks)
 4. [Raw data](#raw_data)
 5. [Workflow](#workflow)
-6. [Preparing the raw reds](#preparing_reads)
-7. [Part 1: reference selection, alignment and variant calling](#part_1)
+6. [Versions of the programs used](#versions)
+7. [Preparing the raw reds](#preparing_reads)
+8. [Part 1: reference selection, alignment and variant calling](#part_1)
    * [Step 1: alignment – map to reference](#step_1)
    * [Step 2: mark duplicates + sort](#step_2)
    * [Step 3: collect alignment & insert size metrics](#step_3)
@@ -34,12 +35,13 @@ SPbU
    * [Step 14: filter indels](#step_14)
    * [Step 15: annotate SNPs and predict effects](#step_15)
    * [Overlaps between VCF files](#overlaps)
-8. [Part 2: genome assembly](#part_2)
+9. [Part 2: genome assembly](#part_2)
    * [Genome size estimation: raw reads](#genome_size_raw)
    * [Genome size estimation: corrected reads](#genome_size_cor)
    * [Annotation](#annotation)
    * [D-genies plotting](#d_genies)
    * [Characteristics of genes in the inverted region](#inversion_genes)
+10. [Literature](#literature)
 
 ## Introduction <div id='introduction'/>
 The increased interest in the study of amyloids is due to their
@@ -85,9 +87,29 @@ The project combined two major tasks:
 
 ![img_1.png](Figures/img_1.png)
 
+## Versions of the programs used <div id='versions'/>
+* [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) v0.11.9
+* [fastp](https://github.com/OpenGene/fastp?ysclid=lhgdfykpzu319786469) v. 0.20.1
+* [GATK4](https://gatk.broadinstitute.org/hc/en-us) v4.1.3.0
+* [BWA-MEM](https://bio-bwa.sourceforge.net/) v. 0.7.17-r1188
+* [Picard Tools](https://broadinstitute.github.io/picard/) v. 2.20.5
+* [R](https://www.r-project.org/) version 3.6.0 (2019-04-26) (variant-calling-pipeline-gatk4 [Docker container](https://hub.docker.com/r/gencorefacility/variant-calling-pipeline-gatk4))
+* R version 4.2.1
+* [Samtools](https://www.htslib.org/) v. 1.9 (variant-calling-pipeline-gatk4 Docker container)
+* Samtools v. 1.16.1
+* [SnpEff](https://pcingola.github.io/SnpEff/) v. 4.3i
+* [SPAdes genome assembler](https://cab.spbu.ru/software/spades/) v3.15.4
+* [Jellyfish mer counter](https://genome.umd.edu/jellyfish.html) v. 2.3.0
+* [QUAST](https://cab.spbu.ru/software/quast/) v5.2.0
+* [RepeatMasker](https://www.repeatmasker.org/) v. 4.1.5
+* [ProteinOrtho](https://www.bioinf.uni-leipzig.de/Software/proteinortho/) v. 6.1.7 
+* [BUSCO](https://busco.ezlab.org/) v. 5.4.4
+
+
 ## Preparing the raw reads <div id='preparing_reads'/>
 
-The quality of raw paired reads was assessed in [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/). About 2% of reads in each sample were trimmed by [fastp](https://github.com/OpenGene/fastp?ysclid=lhgdfykpzu319786469) (v. 0.20.1, standard parameters) due to low quality and too many N.
+The quality of raw paired reads was assessed in FastQC. About 2% of reads in each sample were trimmed by fastp (standard parameters) due to low quality and too many N.   
+
 ![img_2.png](Figures/img_2.png)
 
 ![img_3.png](Figures/img_3.png)
@@ -98,13 +120,13 @@ The quality of raw paired reads was assessed in [FastQC](https://www.bioinformat
 
 ## Part 1: reference selection, alignment and variant calling <div id='part_1'/>
 
-We used [variant calling pipeline](https://gencore.bio.nyu.edu/variant-calling-pipeline-gatk4/) with [GATK4](https://gatk.broadinstitute.org/hc/en-us) published by Mohammed Khalfan on 2020-03-25.    
+We used [variant calling pipeline](https://gencore.bio.nyu.edu/variant-calling-pipeline-gatk4/) with GATK4 published by Mohammed Khalfan on 2020-03-25.    
 Here we give an example of commands for one sample. All commands were executed similarly for all four samples.
 ![img_6.png](Figures/img_6.png)
 
 ### Step 1: alignment – map to reference <div id='step_1'/>
 
-Tool: [BWA-MEM](https://bio-bwa.sourceforge.net/)    
+Tool: BWA-MEM   
 
 Input: .fastq files, reference genome
 
@@ -138,7 +160,7 @@ Command example:
 
 ### Step 3: collect alignment & insert size metrics <div id='step_3'/>
 
-Tool: [Picard Tools](https://broadinstitute.github.io/picard/), [R](https://www.r-project.org/), [Samtools](https://www.htslib.org/)  
+Tool: Picard Tools, R, Samtools 
 
 Input:   
 sorted_dedup_reads.bam   
@@ -374,7 +396,7 @@ Command example:
 
 ### Step 15: annotate SNPs and predict effects <div id='step_15'/>
 
-Tool: [SnpEff](https://pcingola.github.io/SnpEff/)
+Tool: SnpEff
 
 Input:   
 filtered_snps_final.vcf   
@@ -465,7 +487,7 @@ This SNP is more notable not for the gene in which it was located, but for the e
 
 ## Part 2: genome assembly <div id='part_2'/>
 
-*De novo* genome assembly was performed with [SPAdes genome assembler](https://cab.spbu.ru/software/spades/) v3.15.4.   
+*De novo* genome assembly was performed with SPAdes.   
 
 Command example:   
 `$ SPAdes-3.15.4-Linux/bin/spades.py -1 Rub115_ATTCAGAA-CCTATCCT_L001_R1_001.fastq -2 Rub115_ATTCAGAA-CCTATCCT_L001_R2_001.fastq -o ./assembly/Rub115_ATTCAGAA-CCTATCCT_L001` 
@@ -473,7 +495,7 @@ Command example:
 ### Genome size estimation: raw reads <div id='genome_size_raw'/>
 
 We used three approaches to estimate the genome size:  
-1. With [Jellyfish mer counter](https://genome.umd.edu/jellyfish.html) v. 2.3.0 and R;  
+1. With Jellyfish and R;  
 2. With [Genomescope web tool](http://www.genomescope.org/);  
 3. With formula.
 
@@ -519,11 +541,11 @@ Here we present a comparison of the results obtained.
 
 ![img_11.png](Figures/img_11.png)
 
-We see that, as a rule (but not in all cases), the calculations for corrected reads are slightly closer to the actual genome size. Also, for corrected reads, we give a [QUAST](https://cab.spbu.ru/software/quast/) v5.2.0 estimate of the genome size.  
+We see that, as a rule (but not in all cases), the calculations for corrected reads are slightly closer to the actual genome size. Also, for corrected reads, we give a QUAST estimate of the genome size.  
 
 ### Annotation <div id='annotation'/>
 
-Repeat masking was performed with [RepeatMasker](https://www.repeatmasker.org/) v. 4.1.5.  
+Repeat masking was performed with RepeatMasker.  
 Command example:   
 
 `$ RepeatMasker -species 'Saccharomyces cerevisiae' Rub115_ATTCAGAA-CCTATCCT_L001_cor_contigs.fasta`
@@ -532,7 +554,7 @@ Annotation was performed with [Augustus web interface](http://bioinf.uni-greifsw
 
 We obtained 5374, 5377, 5371, 5369 protein sequences for Rub_115_L001, Rub_115_L002, Rub_117_L001, Rub_117_L002 masked contigs predicted, respectively.
 
-These sequences were mapped to the known S288C genes with [ProteinOrtho](https://www.bioinf.uni-leipzig.de/Software/proteinortho/) v. 6.1.7 and [BUSCO](https://busco.ezlab.org/) v. 5.4.4. 
+These sequences were mapped to the known S288C genes with ProteinOrtho and BUSCO. 
 
 [Protein fasta](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/146/045/GCF_000146045.2_R64/GCF_000146045.2_R64_protein.faa.gz) was downloaded for mapping with ProteinOrtho clustering. Contains 6017 protein sequences.   
 ProteinOrtho command example:   
@@ -553,13 +575,15 @@ where BUSCOs - Benchmarking Universal Single-Copy Orthologs.
 ### D-Genies plotting <div id='d_genies'/>
 [D-Genies](https://dgenies.toulouse.inra.fr/) - an online tool designed to compare two genomes - was used for comparing reference strain 74-D694 and assemblies with dot plots.   
 
-![img_13.png](Figures/img_13.png)
+![img_15.png](Figures/img_15.png)
+
+![img_16.png](Figures/img_16.png)
 
 A long inversion was detected (chromosome CM026512.1 (IX), 148411 - 304998) in sample Rub_117_L001. A coverage plot was built to make sure there was no duplication or deletion.  
 Coverage file was obtained with command:  
 `samtools depth -a Rub117_GAATTCGT-CCTATCCT_L001.bam  > Rub117_GAATTCGT-CCTATCCT_L001.coverage`  
 
-This file can be found in 117_001_coverage/Rub117_GAATTCGT-CCTATCCT_L001_recal_reads.coverage. The plot was obtained by processing this file with the R script which can be found in Scripts/117_1_coverage_plot.Rmd
+This file can be found in 117_001_coverage/Rub117_GAATTCGT-CCTATCCT_L001_recal_reads.zip. The plot was obtained by processing this file with the R script which can be found in Scripts/117_1_coverage_plot.Rmd
 
 ![img_14.png](Figures/img_14.png) 
 
@@ -647,13 +671,8 @@ Characteristics of genes in the inverted region <div id='inversion_genes'/>
 | *YIL015W*   | *BAR1*    | 303034-304797                            | aspartyl protease BAR1                                                                                  |
 
 Of these genes, the following ones could be distinguished:   
-*DPH1*:  
-**NCBI**:  
-Predicted to enable transferase activity. Involved in peptidyl-diphthamide biosynthetic process from peptidyl-histidine. Located in cytoplasm. Orthologous to human DPH1 (diphthamide biosynthesis 1).    
-**SGD**:   
-Protein required for synthesis of diphthamide; required along with Dph2p, Kti11p, Jjj3p, and Dph5p; diphthamide is a modified histidine residue of translation elongation factor 2 (Eft1p or Eft2p); forms a complex with Dph2p that catalyzes the first step of diphthamide biosynthesis.
-  
-*XBP1*:   
+
+*YIL101C (XBP1)*:   
 **NCBI**:   
 Enables DNA-binding transcription factor activity, RNA polymerase II-specific. Involved in cellular response to oxidative stress; negative regulation of transcription by RNA polymerase II; and positive regulation of histone deacetylation. Located in nucleus.
 **SGD**:   
@@ -665,20 +684,27 @@ Predicted to be a structural constituent of ribosome. Involved in maturation of 
 **SGD**:  
 Protein component of the small (40S) ribosomal subunit; homologous to mammalian ribosomal protein S24, no bacterial homolog; RPS24A has a paralog, RPS24B, that arose from the whole genome duplication.
 
-*YKE4*:    
+*YIL023C (YKE4)*:    
 **NCBI**:   
 Enables zinc ion transmembrane transporter activity. Involved in zinc ion transport. Located in endoplasmic reticulum. Human ortholog(s) of this gene implicated in Ehlers-Danlos syndrome and Ehlers-Danlos syndrome spondylodysplastic type 3. Orthologous to several human genes including SLC39A7 (solute carrier family 39 member 7).  
 **SGD**:   
 Zinc transporter; localizes to the ER; null mutant is sensitive to calcofluor white, leads to zinc accumulation in cytosol; ortholog of the mouse KE4 and member of the ZIP (ZRT, IRT-like Protein) family.
+It was shown that that members of the prion gene family represent an ancient branch of a larger family of ZIP metal ion transporters [[1]](#1)[[2]](#2).
 
-*RPL2A*:  
+*YFR031C-A (RPL2A)*:  
 **NCBI**:   
 Enables ATP binding activity; DNA binding activity; and chromatin binding activity. Contributes to ATP hydrolysis activity. Involved in chromosome organization and negative regulation of meiotic DNA double-strand break formation. Located in mitochondrion. Part of condensin complex. Orthologous to human SMC2 (structural maintenance of chromosomes 2).   
 **SGD**:   
 Ribosomal 60S subunit protein L2A; homologous to mammalian ribosomal protein L2 and bacterial L2; RPL2A has a paralog, RPL2B, that arose from the whole genome duplication.
 
-*SNL1*:   
+*YIL016W (SNL1)*:   
 **NCBI**:    
 Enables ribosome binding activity. Involved in nuclear pore organization and protein folding. Located in endoplasmic reticulum membrane and nuclear envelope.  
 **SGD**:   
 Ribosome-associated protein; proposed to act in protein synthesis, nuclear pore complex biogenesis and maintenance as well as protein folding and prion maintenance; has similarity to the mammalian BAG-1 protein.  
+
+Also, in connection with the revealed effect of the prion-like factor [MSC+] (presence of this factor in cells leads to a decrease in the accuracy of translation termination and reading premature stop codons as significant), we propose for additional studies all the genes associated with translation (*YER074W, YFR031C-A, YIL043C, YIL052C, YIL103W, YIL038C, YIL051C, YIL093C, YIL078W*).
+
+## Literature <div id='literature'/>
+1. Ehsani, S., Mehrabian, M., Pocanschi, C. L., &#38; Schmitt-Ulms, G. (2012). The ZIP-prion connection. <i>Prion</i>, <i>6</i>(4), 317. https://doi.org/10.4161/PRI.20196 <div id='1'/>  
+2. Schmitt-Ulms, G., Ehsani, S., Watts, J. C., Westaway, D., &#38; Wille, H. (2009). Evolutionary descent of prion genes from the ZIP family of metal ion transporters. <i>PloS One</i>, <i>4</i>(9). https://doi.org/10.1371/JOURNAL.PONE.0007208 <div id='2'/> 
