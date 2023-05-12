@@ -467,24 +467,19 @@ We used bcftools v. 1.13 `index` and `isec` commands to intersect VCF files with
 
 Of the detected SNPs, the following ones could be distinguished:
 
-for the strain 115:
-* *YEL030W (ECM10)*:    
+* *YEL030W (ECM10)* (strain 115):    
 **[*Saccharomyces* genome database (SGD)](https://www.yeastgenome.org/)** [[1]](#1) [[2]](#2):   
 Heat shock protein of the Hsp70 family; localized in mitochondrial nucleoids, plays a role in protein translocation, interacts with Mge1p in an ATP-dependent manner; overexpression induces extensive mitochondrial DNA aggregations; ECM10 has a paralog, SSC1, that arose from the whole genome duplication.  
 **[The National Center for Biotechnology Information (NCBI)](https://www.ncbi.nlm.nih.gov/)** [[3]](#3) [[4]](#4):   
 Predicted to enable several functions, including ATP binding activity; ATP hydrolysis activity; and misfolded protein binding activity. Involved in protein targeting to mitochondrion. Located in mitochondrial nucleoid. Human ortholog(s) of this gene implicated in Parkinson's disease and autosomal dominant sideroblastic anemia 4. Orthologous to human HSPA9 (heat shock protein family A (Hsp70) member 9).
 
-* *YMR173W-A*:    
+* *YMR173W-A* (strain 115):    
 **SGD**:   
 Dubious open reading frame; unlikely to encode a functional protein, based on available experimental and comparative sequence data; overlaps the verified gene DDR48/YML173W.   
 *DDR48/YML173W*, **SGD**:   
 DNA damage-responsive protein; expression is increased in response to heat-shock stress or treatments that produce DNA lesions; contains multiple repeats of the amino acid sequence NNNDSYGS; protein abundance increases in response to DNA replication stress.  
 *DDR48/YML173W*, **NCBI**:  
-Enables ATP hydrolysis activity and GTPase activity. Involved in DNA repair. Located in cytosol.  
-
-for the strain 117:
-* CM026508.1 (IV), position 2060, TGG>TGA (Trp>*), *YDL248W (COS7)*:    
-This SNP is more notable not for the gene in which it was located, but for the effect: the appearance of a premature stop codon, which echoes the described phenotype of the prion-like factor under study.  
+Enables ATP hydrolysis activity and GTPase activity. Involved in DNA repair. Located in cytosol.
 
 ## Part 2: genome assembly <div id='part_2'/>
 
