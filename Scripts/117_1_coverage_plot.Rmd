@@ -1,0 +1,126 @@
+---
+title: "Untitled"
+author: "Sidorenko Oksana"
+date: "2023-05-11"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
+```
+
+A function to detect required packages that are not installed and install them:
+```{r message=FALSE, warning=FALSE}
+package_installer <- function(package){
+  if (!require(package, character.only=T, quietly=T)) {
+    install.packages(package)
+    library(package, character.only=T)
+  }
+}
+```
+
+Installing required packages (if needed). If we have all the packages installed, the function will print "NULL" for each package:
+```{r message=FALSE, warning=FALSE, paged.print=FALSE}
+lapply(c("ggplot2"), package_installer)
+```
+
+A path containing input files should be saved in my_path variable.
+```{r}
+my_path <- "C:\\Users\\Oxana\\Desktop"
+```
+
+```{r message=FALSE, warning=FALSE}
+setwd(my_path)
+cov_117_1 <- read.csv("Rub117_GAATTCGT-CCTATCCT_L001_recal_reads.coverage", 
+                      sep = '\t', header = F)
+
+# calculating coordinates of the lines separating the chromosomes
+print(0 + 235038) # 235038 1
+print(235038 + 807500) # 1042538 2
+print(1042538 + 179834) # 1222372 3
+print(1222372 + 195167) # 1417539 3
+print(1417539 + 1528760) # 2946299 4
+print(2946299 + 157794) # 3104093 5
+print(3104093 + 460579) # 3564672 5
+print(3564672 + 297264) # 3861936 6
+print(3861936 + 1140639) # 5002575 7
+print(5002575 + 547345) # 5549920 8
+print(5549920 + 423097) # 5973017 9
+print(5973017 + 763246) # 6736263 10
+print(6736263 + 680625) # 7416888 11
+print(7416888 + 635786) # 8052674 12
+print(8052674 + 40580) # 8093254 12
+print(8093254 + 471670) # 8564924 12
+print(8564924 + 936997) # 9501921 13
+print(9501921 + 771387) # 10273308 14
+print(10273308 + 1085979) # 11359287 15
+print(11359287 + 25012) # 11384299 15
+print(11384299 + 931983) # 12316282 16
+
+
+cov_117_1$V2 <- cov_117_1$V2 + ifelse(cov_117_1$V1 == "CM026507.1", 235038, 0)
+cov_117_1$V2 <- cov_117_1$V2 + ifelse(cov_117_1$V1 == "JADBMI010000003.1", 1042538, 0)
+cov_117_1$V2 <- cov_117_1$V2 + ifelse(cov_117_1$V1 == "JADBMI010000004.1", 1222372, 0)
+cov_117_1$V2 <- cov_117_1$V2 + ifelse(cov_117_1$V1 == "CM026508.1", 1417539, 0)
+cov_117_1$V2 <- cov_117_1$V2 + ifelse(cov_117_1$V1 == "JADBMI010000007.1", 2946299, 0)
+cov_117_1$V2 <- cov_117_1$V2 + ifelse(cov_117_1$V1 == "JADBMI010000006.1", 3104093, 0)
+cov_117_1$V2 <- cov_117_1$V2 + ifelse(cov_117_1$V1 == "CM026509.1", 3564672, 0)
+cov_117_1$V2 <- cov_117_1$V2 + ifelse(cov_117_1$V1 == "CM026510.1", 3861936, 0)
+cov_117_1$V2 <- cov_117_1$V2 + ifelse(cov_117_1$V1 == "CM026511.1", 5002575, 0)
+cov_117_1$V2 <- cov_117_1$V2 + ifelse(cov_117_1$V1 == "CM026512.1", 5549920, 0)
+cov_117_1$V2 <- cov_117_1$V2 + ifelse(cov_117_1$V1 == "CM026513.1", 5973017, 0)
+cov_117_1$V2 <- cov_117_1$V2 + ifelse(cov_117_1$V1 == "CM026514.1", 6736263, 0)
+cov_117_1$V2 <- cov_117_1$V2 + ifelse(cov_117_1$V1 == "JADBMI010000015.1", 7416888, 0)
+cov_117_1$V2 <- cov_117_1$V2 + ifelse(cov_117_1$V1 == "JADBMI010000021.1", 8052674, 0)
+cov_117_1$V2 <- cov_117_1$V2 + ifelse(cov_117_1$V1 == "JADBMI010000014.1", 8093254, 0)
+cov_117_1$V2 <- cov_117_1$V2 + ifelse(cov_117_1$V1 == "CM026515.1", 8564924, 0)
+cov_117_1$V2 <- cov_117_1$V2 + ifelse(cov_117_1$V1 == "CM026516.1", 9501921, 0)
+cov_117_1$V2 <- cov_117_1$V2 + ifelse(cov_117_1$V1 == "CM026517.1", 10273308, 0)
+cov_117_1$V2 <- cov_117_1$V2 + ifelse(cov_117_1$V1 == "JADBMI010000025.1", 11359287, 0)
+cov_117_1$V2 <- cov_117_1$V2 + ifelse(cov_117_1$V1 == "CM026518.1", 11384299, 0)
+cov_117_1$V2 <- cov_117_1$V2 + ifelse(cov_117_1$V1 == "CM026520.1", 12316282, 0)
+
+# avoiding rescaling due to repeats
+cov_117_1_mod <- cov_117_1[cov_117_1$V3<200,]
+
+ggplot(cov_117_1_mod, aes(x=cov_117_1_mod$V2, y=cov_117_1_mod$V3)) +
+  geom_line(col="dimgray") +
+  xlab("Position") +
+  ylab("Coverage depth") +
+  ggtitle("Rub_117_L001 coverage plot") +
+  geom_vline(xintercept = 1, linetype = "dashed", col="red") +
+  geom_vline(xintercept = 235038, linetype = "dashed", col="red") +
+  geom_vline(xintercept = 1042538, linetype = "dashed", col="red") + 
+  geom_vline(xintercept = 1417539, linetype = "dashed", col="red") + 
+  geom_vline(xintercept = 2946299, linetype = "dashed", col="red") + 
+  geom_vline(xintercept = 3564672, linetype = "dashed", col="red") + 
+  geom_vline(xintercept = 3861936, linetype = "dashed", col="red") + 
+  geom_vline(xintercept = 5002575, linetype = "dashed", col="red") + 
+  geom_vline(xintercept = 5549920, linetype = "dashed", col="red") + 
+  geom_vline(xintercept = 5973017, linetype = "dashed", col="red") + 
+  geom_vline(xintercept = 6736263, linetype = "dashed", col="red") + 
+  geom_vline(xintercept = 7416888, linetype = "dashed", col="red") + 
+  geom_vline(xintercept = 8564924, linetype = "dashed", col="red") + 
+  geom_vline(xintercept = 9501921, linetype = "dashed", col="red") + 
+  geom_vline(xintercept = 10273308, linetype = "dashed", col="red") + 
+  geom_vline(xintercept = 11384299, linetype = "dashed", col="red") + 
+  geom_vline(xintercept = 12316282, linetype = "dashed", col="red") +
+  geom_vline(xintercept = 12405263, linetype = "dashed", col="red") +
+  annotate("text", x = 117519, y = 180, label = "I") +
+  annotate("text", x = 638788.0, y = 180, label = "II") +
+  annotate("text", x = 1230038.5, y = 180, label = "III") +
+  annotate("text", x = 2181919.0, y = 180, label = "IV") +
+  annotate("text", x = 3255485.5, y = 180, label = "V") +
+  annotate("text", x = 3713304, y = 180, label = "VI") +
+  annotate("text", x = 4432255.5, y = 180, label = "VII") +
+  annotate("text", x = 5276247.5, y = 180, label = "VIII") +
+  annotate("text", x = 5761468.5, y = 180, label = "IX") +
+  annotate("text", x = 6354640.0, y = 180, label = "X") +
+  annotate("text", x = 7076575.5, y = 180, label = "XI") +
+  annotate("text", x = 7990906.0, y = 180, label = "XII") +
+  annotate("text", x = 9033422.5, y = 180, label = "XIII") +
+  annotate("text", x = 9887614.5, y = 180, label = "XIV") +
+  annotate("text", x = 10828803.5, y = 180, label = "XV") +
+  annotate("text", x = 11850290.5, y = 180, label = "XVI")
+```
+
