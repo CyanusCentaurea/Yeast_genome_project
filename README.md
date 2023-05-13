@@ -486,7 +486,7 @@ Enables ATP hydrolysis activity and GTPase activity. Involved in DNA repair. Loc
 *De novo* genome assembly was performed with SPAdes.   
 
 Command example:   
-`$ SPAdes-3.15.4-Linux/bin/spades.py -1 Rub115_ATTCAGAA-CCTATCCT_L001_R1_001.fastq -2 Rub115_ATTCAGAA-CCTATCCT_L001_R2_001.fastq -o ./assembly/Rub115_ATTCAGAA-CCTATCCT_L001` 
+`$ SPAdes-3.15.4-Linux/bin/spades.py -1 Rub115_ATTCAGAA-CCTATCCT_L001_R1_001.fastq -2 Rub115_ATTCAGAA-CCTATCCT_L001_R2_001.fastq -o ./assembly/Rub115_ATTCAGAA-CCTATCCT_L001`
 
 ### Genome size estimation: raw reads <div id='genome_size_raw'/>
 
@@ -568,6 +568,21 @@ parameters:
 
 where BUSCOs - Benchmarking Universal Single-Copy Orthologs.
 
+Genome assembly: summary
+
+| Sample                                                                                                        | Rub115_L001                  | Rub115_L001                  | Rub117_L001                  | Rub117_L002                  |   
+|---------------------------------------------------------------------------------------------------------------|------------------------------|------------------------------|------------------------------|------------------------------|
+| Number of contigs*                                                                                            | 263                          | 260                          | 257                          | 248                          |
+| Largest contig, bases*                                                                                        | 514 399                      | 551 284                      | 551 369                      | 520 144                      |
+| Total length, bases*                                                                                          | 11 509 482                   | 11 511 662                   | 11 503 821                   | 11 505 033                   |
+| N50*                                                                                                          | 130 154                      | 133 828                      | 126 323                      | 117 401                      |
+| Number of S288C genes found (%)**                                                                             | 5138 (85.4%)                 | 5143 (85.5%)                 | 5141 (85.4%)                 | 5145 (85.5%)                 |
+| Number of BUSCOs (Benchmarking Universal Single-Copy Orthologs): complete BUSCOs: single-copy + duplicated*** | 2094 <br/>(2049 + 45), 98.0% | 2093 <br/>(2048 + 45), 97.9% | 2095 <br/>(2050 + 45), 98.0% | 2091 <br/>(2046 + 45), 97.8% |
+\* Calculated with Quast.   
+** Calculated as one-to-one orthologs with ProteinOrtho clustering.   
+*** Calculated with BUSCO.   
+
+
 ### D-Genies plotting <div id='d_genies'/>
 [D-Genies](https://dgenies.toulouse.inra.fr/) - an online tool designed to compare two genomes - was used for comparing reference strain 74-D694 and assemblies with dot plots.   
 
@@ -587,7 +602,7 @@ There are no signs of changes in the copyness of chromosomes or their sections o
 
 ### Characteristics of genes in the inverted region <div id='inversion_genes'/>
 
-Characteristics of genes in the inverted region <div id='inversion_genes'/>
+Characteristics of genes in the inverted region:
 
 | Locus tag   | Gene      | Coordinates (Chromosome: IX; CM026512.1) | Gene description                                                                                        |
 |-------------|-----------|------------------------------------------|---------------------------------------------------------------------------------------------------------|
