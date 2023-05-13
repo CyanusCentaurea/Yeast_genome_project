@@ -578,6 +578,7 @@ Genome assembly: summary
 | N50*                                                                                                          | 130 154                      | 133 828                      | 126 323                      | 117 401                      |
 | Number of S288C genes found (%)**                                                                             | 5138 (85.4%)                 | 5143 (85.5%)                 | 5141 (85.4%)                 | 5145 (85.5%)                 |
 | Number of BUSCOs (Benchmarking Universal Single-Copy Orthologs): complete BUSCOs: single-copy + duplicated*** | 2094 <br/>(2049 + 45), 98.0% | 2093 <br/>(2048 + 45), 97.9% | 2095 <br/>(2050 + 45), 98.0% | 2091 <br/>(2046 + 45), 97.8% |
+
 \* Calculated with Quast.   
 ** Calculated as one-to-one orthologs with ProteinOrtho clustering.   
 *** Calculated with BUSCO.   
