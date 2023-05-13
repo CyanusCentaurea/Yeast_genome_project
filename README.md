@@ -54,7 +54,7 @@ intracellular accumulation of protein aggregates occurs. In addition to patholog
 amyloids in various organisms, functional amyloids have been identified,
 performing important biological functions. There are about 10 known
 prions in the yeast *Saccharomyces cerevisiae*. In research led
-Professor Yu. O. Chernoff in the yeast S. cerevisiae revealed a previously unknown
+Professor Yu. O. Chernoff in the yeast *S. cerevisiae* revealed a previously unknown
 cytoplasmically inherited factor that exhibits characteristic properties
 for prions. This prion-like factor was named [MCS + ]. Presence of this
 factor in cells leads to a decrease in the accuracy of translation termination and
@@ -99,6 +99,7 @@ The project combined two major tasks:
 * [Samtools](https://www.htslib.org/) v. 1.9 (variant-calling-pipeline-gatk4 Docker container)
 * Samtools v. 1.16.1
 * [SnpEff](https://pcingola.github.io/SnpEff/) v. 4.3i
+* [bcftools](https://samtools.github.io/bcftools/bcftools.html) v. 1.13
 * [SPAdes genome assembler](https://cab.spbu.ru/software/spades/) v3.15.4
 * [Jellyfish mer counter](https://genome.umd.edu/jellyfish.html) v. 2.3.0
 * [QUAST](https://cab.spbu.ru/software/quast/) v5.2.0
@@ -430,14 +431,14 @@ This step was also repeated using gatk CNNScoreVariants:
 
 The results matched for these two tools: there were 12315, 12352, 12239 and 12279 SNPs detected in Rub_115_L001, Rub_115_L002, Rub_117_L001, Rub_117_L002 samples, respectively.
 
-We went through all the above steps with the reference *S. cerevisiae* strain S288C, but found about 25000 SNPs for each sample, so we changed the reference to *S. cerevisiae* strain 74-D694.
+We went through all the above steps with the reference *S. cerevisiae* strain [S288C](https://www.ncbi.nlm.nih.gov/genome/15?genome_assembly_id=22535), but found about 25000 SNPs for each sample, so we changed the reference to *S. cerevisiae* strain [74-D694](https://www.ncbi.nlm.nih.gov/assembly/GCA_014898935.1#/def).
 
 ![img_8.png](Figures/img_8.png)
 
 ### Overlaps between VCF files <div id='overlaps'/>
 
 We were interested in identifying SNPs unique to the two strains. In other words, by what variants do the strains differ from each other?   
-We used bcftools v. 1.13 `index` and `isec` commands to intersect VCF files with SNPs received after pipeline execution. There were 96 SNPs unique for the strain 115 and 95 SNPs unique for the strain 117 detected. Of these, 5 and 11 SNPs were located in genes, passed filters and were not synonymous for strain 115 and strain 117, respectively.
+We used bcftools `index` and `isec` commands to intersect VCF files with SNPs received after pipeline execution. There were 96 SNPs unique for the strain 115 and 95 SNPs unique for the strain 117 detected. Of these, 5 and 11 SNPs were located in genes, passed filters and were not synonymous for strain 115 and strain 117, respectively.
 
 115 unique SNPs (in genes, passed filters and not synonymous):
 
@@ -497,7 +498,7 @@ We used three approaches to estimate the genome size:
 
 The first approach involves creating a .histo file and k-mer profile plotting in accordance with [this tutorial](https://koke.asrc.kanazawa-u.ac.jp/HOWTO/kmer-genomesize.html).
 
-First, we run jellyfish with parameters:   
+First, we run Jellyfish with parameters:   
 `-m` or “mer” specifies the length (23)   
 `-C` tells it to ignore directionality (it treats each read the same as its reverse complement)   
 `-t` number of threads   
@@ -552,7 +553,7 @@ We obtained 5374, 5377, 5371, 5369 protein sequences for Rub_115_L001, Rub_115_L
 
 These sequences were mapped to the known S288C genes with ProteinOrtho and BUSCO. 
 
-[Protein fasta](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/146/045/GCF_000146045.2_R64/GCF_000146045.2_R64_protein.faa.gz) was downloaded for mapping with ProteinOrtho clustering. Contains 6017 protein sequences.   
+[Protein fasta](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/146/045/GCF_000146045.2_R64/GCF_000146045.2_R64_protein.faa.gz) was downloaded for mapping with ProteinOrtho clustering. It contains 6017 protein sequences.   
 ProteinOrtho command example:   
 `$ perl ./usr/local/bin/proteinortho6.pl Rub115_L001_cor_contigs_masked_predictions.aa GCA_000146045.2_R64_protein.faa`
 
@@ -599,7 +600,7 @@ This file can be found in 117_001_coverage/Rub117_GAATTCGT-CCTATCCT_L001_recal_r
 
 ![img_14.png](Figures/img_14.png) 
 
-There are no signs of changes in the copyness of chromosomes or their sections on the plot.
+There were no signs of changes in the copy number variations of chromosomes or their sections detected on the plot.
 
 ### Characteristics of genes in the inverted region <div id='inversion_genes'/>
 
@@ -721,11 +722,11 @@ Also, in connection with the revealed effect of the prion-like factor [MSC+] (pr
 
 ### Conclusion and further plans <div id='conclusion'/>
 
-Thus, in our work, we have identified a number of candidate genes for further testing. We can offer to study protein - protein interaction by the co-immunoprecipitation
-method, DNA-protein interaction by the Chip-seq method or gene knockdown to verify our findings and for
-further experiments. It is also necessary to study the identified SNPs, apply statistical approaches and obtain gene deletions to confirm or refute the involvement of these findings in the manifestation if [MCS + ].
-
-If one of these candidates is highlighted as a result of additional research, it may make sense to analyze the differential expression and its structure for enrichment with certain amino acids and isolate a hypothetical prion domain, as well as check possible prion-prion interactions, since it is well-documented that a single yeast cell can harbor more than one prion element and that when two prions co-exist, they influence not only each other's de novo appearance but also propagation [[5]](#5).
+ 
+Thus, in our work, we have identified a number of candidate genes for further testing. We consider it necessary to study the identified SNPs and genes in the inverted region, apply statistical and biological approaches, obtain gene deletions to confirm or refute the involvement of these findings in the manifestation if [MCS + ]. We also plan to go through the entire alignment and variant calling part with *S. cerevisiae* strain [1A-D1628](https://www.ncbi.nlm.nih.gov/assembly/GCA_014898825.1).   
+If any of our findings are highlighted as a result of additional research, it may make sense to analyze the differential expression and its structure for enrichment with certain amino acids and isolate a hypothetical prion domain, as well as check possible protein - protein interaction by the co-immunoprecipitation method, DNA-protein interaction by the Chip-seq method or gene knockdown to verify our findings and for
+further experiments.  
+It also may make sense to analyze the differential expression and its structure for enrichment with certain amino acids and isolate a hypothetical prion domain, as well as check possible prion-prion interactions, since it is well-documented that a single yeast cell can harbor more than one prion element and that when two prions co-exist, they influence not only each other's de novo appearance but also propagation [[5]](#5).
 
 ## Literature <div id='literature'/>
 1. Cherry, J. M., Hong, E. L., Amundsen, C., Balakrishnan, R., Binkley, G., Chan, E. T., Christie, K. R., Costanzo, M. C., Dwight, S. S., Engel, S. R., Fisk, D. G., Hirschman, J. E., Hitz, B. C., Karra, K., Krieger, C. J., Miyasato, S. R., Nash, R. S., Park, J., Skrzypek, M. S., … Wong, E. D. (2012). Saccharomyces Genome Database: the genomics resource of budding yeast. <i>Nucleic Acids Research</i>, <i>40</i>(Database issue). https://doi.org/10.1093/NAR/GKR1029 <div id='1'/> 
