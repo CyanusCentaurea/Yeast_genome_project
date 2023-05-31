@@ -1,5 +1,5 @@
 ---
-title: "Untitled"
+title: "117_1 coverage plot"
 author: "Sidorenko Oksana"
 date: "2023-05-11"
 output: html_document
@@ -26,7 +26,7 @@ lapply(c("ggplot2"), package_installer)
 
 A path containing input files should be saved in my_path variable.
 ```{r}
-my_path <- "C:\\Users\\Oxana\\Desktop"
+my_path <- "./Data_for_scripts/117_001_coverage/"
 ```
 
 ```{r message=FALSE, warning=FALSE}
@@ -35,27 +35,27 @@ cov_117_1 <- read.csv("Rub117_GAATTCGT-CCTATCCT_L001_recal_reads.coverage",
                       sep = '\t', header = F)
 
 # calculating coordinates of the lines separating the chromosomes
-print(0 + 235038) # 235038 1
-print(235038 + 807500) # 1042538 2
-print(1042538 + 179834) # 1222372 3
-print(1222372 + 195167) # 1417539 3
-print(1417539 + 1528760) # 2946299 4
-print(2946299 + 157794) # 3104093 5
-print(3104093 + 460579) # 3564672 5
-print(3564672 + 297264) # 3861936 6
-print(3861936 + 1140639) # 5002575 7
-print(5002575 + 547345) # 5549920 8
-print(5549920 + 423097) # 5973017 9
-print(5973017 + 763246) # 6736263 10
-print(6736263 + 680625) # 7416888 11
-print(7416888 + 635786) # 8052674 12
-print(8052674 + 40580) # 8093254 12
-print(8093254 + 471670) # 8564924 12
-print(8564924 + 936997) # 9501921 13
-print(9501921 + 771387) # 10273308 14
-print(10273308 + 1085979) # 11359287 15
-print(11359287 + 25012) # 11384299 15
-print(11384299 + 931983) # 12316282 16
+print(0 + 235038) # 235038 chr1
+print(235038 + 807500) # 1042538 chr2
+print(1042538 + 179834) # 1222372 chr3
+print(1222372 + 195167) # 1417539 chr3
+print(1417539 + 1528760) # 2946299 chr4
+print(2946299 + 157794) # 3104093 chr5
+print(3104093 + 460579) # 3564672 chr5
+print(3564672 + 297264) # 3861936 chr6
+print(3861936 + 1140639) # 5002575 chr7
+print(5002575 + 547345) # 5549920 chr8
+print(5549920 + 423097) # 5973017 chr9
+print(5973017 + 763246) # 6736263 chr10
+print(6736263 + 680625) # 7416888 chr11
+print(7416888 + 635786) # 8052674 chr12
+print(8052674 + 40580) # 8093254 chr12
+print(8093254 + 471670) # 8564924 chr12
+print(8564924 + 936997) # 9501921 chr13
+print(9501921 + 771387) # 10273308 chr14
+print(10273308 + 1085979) # 11359287 chr15
+print(11359287 + 25012) # 11384299 chr15
+print(11384299 + 931983) # 12316282 chr16
 
 
 cov_117_1$V2 <- cov_117_1$V2 + ifelse(cov_117_1$V1 == "CM026507.1", 235038, 0)

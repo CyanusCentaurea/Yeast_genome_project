@@ -9,8 +9,9 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
 ```
 
+A path containing input files should be saved in my_path variable.
 ```{r}
-my_path <- "C:\\Users\\Oxana\\Desktop"
+my_path <- "./Data_for_scripts/Corrected_reads_genome_size_plotting/"
 ```
 
 
