@@ -598,6 +598,13 @@ Coverage file was obtained with command:
 
 This file can be found in 117_001_coverage/Rub117_GAATTCGT-CCTATCCT_L001_recal_reads.zip. The plot was obtained by processing this file with the R script which can be found in Scripts/117_1_coverage_plot.Rmd
 
+To run the script, the file Rub117_GAATTCGT-CCTATCCT_L001.coverage must be pre-unzipped to the same directory where it is located (Data_for_scripts
+/117_001_coverage/). This can be done using [unzip](https://www.linux.org/docs/man1/unzip.html) command which can be installed with:   
+`$ sudo apt install unzip`
+
+...and runned with   
+`$ unzip Data_for_scripts/117_001_coverage/Rub117_GAATTCGT-CCTATCCT_L001_recal_reads.zip -d Data_for_scripts/117_001_coverage/`
+
 ![img_14.png](Figures/img_14.png) 
 
 There were no signs of changes in the copy number variations of chromosomes or their sections detected on the plot.
